@@ -1,13 +1,18 @@
-import { response } from "express";
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./services/components/Home";
 
 // SERVICES THAT CALL OUR API ENDPOINTS
-import { getAllProfiles, getAuth, myReccomendations } from "./services/profileService";
+import {
+  getAllProfiles,
+  getAuth,
+  myReccomendations,
+} from "./services/profileService";
 
 function App() {
   const [profiles, setProfiles] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
-  const[reccomendations, setReccomendations]=useState(null);
+  const [reccomendations, setReccomendations] = useState(null);
 
   useEffect(() => {
     async function getProfiles() {
@@ -39,8 +44,8 @@ function App() {
       }
     }
     getReccomendations();
-    console.log(reccomendations)
-  }, [accessToken])
+    console.log(reccomendations);
+  }, [accessToken]);
 
   // async function getReccomendations(accessToken) {
   //   const url ='https://api.spotify.com/v1/recommendations/available-genre-seeds'
@@ -48,12 +53,10 @@ function App() {
   //   if (!results.error) {
   //     setReccomendations(results);
   //     //results.results.filter((item) => !basketIds.includes(item.trackId))
-      
+
   //   }
   // }
 
-  
-  
   const renderProfile = (user) => {
     return (
       <li key={user._id}>
@@ -65,18 +68,23 @@ function App() {
       </li>
     );
   };
-  console.log()
+  console.log();
 
   return (
     <div>
       {/* <p>{reccomendations.map((track)=>track.name)}</p> */}
-      <ul>
+      {/* <ul>
         {profiles && profiles.length > 0 ? (
           profiles.map((profile) => renderProfile(profile))
         ) : (
           <p>No profiles found</p>
         )}
-      </ul>
+      </ul> */}
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<Home/>}></Route>
+        </Routes>
+      </Router>
     </div>
   );
 }
