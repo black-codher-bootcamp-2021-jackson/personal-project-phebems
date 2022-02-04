@@ -3,15 +3,15 @@ const Track = ({ track, ...props }) => {
     id,
     name,
     artists,
-    album: {images},
+    album: {images},  
     preview_url,
   } = track;
-  return <div>
+  return <div className="track">
       <img src ={images[2].url} alt='album artwork'/>
       <p>{name}</p>
       <p>{artists[0] ? artists[0].name : artists[0].name}</p>
       
-      {preview_url ? <a href={preview_url}>play</a>: 'preview unavailable'}
+      {preview_url ? <a href={preview_url}>preview</a>: 'preview unavailable'}
   </div>;
 };
 

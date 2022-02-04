@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./services/components/Home";
-import Track from "./services/components/Track";
+import Home from "./components/Home";
 
 // SERVICES THAT CALL OUR API ENDPOINTS
 import {
@@ -37,13 +36,9 @@ function App() {
 
   return (
     <div>
-       {reccomendations!= null ? reccomendations.map((track) => <Track track={track}/>): 'waiting'}
-       {reccomendations!= null ?  <Track track={reccomendations[0]}/> : 'waiting'}
-      
-
       <Router>
         <Routes>
-          <Route exact path="/" element={<Home />}></Route>
+          <Route exact path="/" element={<Home reccomendations={reccomendations}/>}></Route>
         </Routes>
       </Router>
     </div>
