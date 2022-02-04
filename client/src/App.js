@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./services/components/Home";
+import Track from "./services/components/Track";
 
 // SERVICES THAT CALL OUR API ENDPOINTS
 import {
@@ -32,19 +33,20 @@ function App() {
         setAccessToken(response);
       }
     }
-//console.log(accessToken)
+    console.log(accessToken)
     getToken();
-  }, [accessToken]);
+  },);
 
   useEffect(() => {
     async function getReccomendations(accessToken) {
+      if (accessToken) {
         const response = await myReccomendations(accessToken);
-        setReccomendations(response.tracks); 
+        setReccomendations(response.tracks);
+      }
     }
     getReccomendations(accessToken);
-    console.log(reccomendations.tracks);
   }, [accessToken]);
-
+console.log(reccomendations[0].album.images[2].url);
   // async function getReccomendations(accessToken) {
   //   const url ='https://api.spotify.com/v1/recommendations/available-genre-seeds'
   //   const results = await fetch(url).then((res) => res.json());
@@ -70,11 +72,12 @@ function App() {
 
   return (
     <div>
-      <p>{reccomendations.map((track)=>track.name)}</p>
-      
+       <p>{reccomendations.map((track) => <Track track={track}/>)}</p>
+       <Track track={reccomendations[0]}/>
+
       <Router>
         <Routes>
-          <Route exact path="/" element={<Home/>}></Route>
+          <Route exact path="/" element={<Home />}></Route>
         </Routes>
       </Router>
     </div>

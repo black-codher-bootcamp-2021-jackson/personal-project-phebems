@@ -27,20 +27,20 @@ const getAuth = async () => {
       },
     }
   );
+  console.log(data.access_token)
   return response.data.access_token;
 };
 
 const myReccomendations = async (accessToken) => {
   
   const response = await axios.get(
-    "https://api.spotify.com/v1/recommendations?limit=10&market=ES&seed_artists=23zg3TcAtWQy7J6upgbUnj&seed_genres=r-n-b",
+    "https://api.spotify.com/v1/recommendations?limit=100&market=ES&seed_artists=23zg3TcAtWQy7J6upgbUnj&seed_genres=r-n-b",
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     }
   );
-  console.log(accessToken);
   //console.log(accessToken);
   return response.data;
 };
