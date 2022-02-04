@@ -14,16 +14,16 @@ function App() {
   const [accessToken, setAccessToken] = useState(null);
   const [reccomendations, setReccomendations] = useState(null);
 
-  useEffect(() => {
-    async function getProfiles() {
-      if (!profiles) {
-        const response = await getAllProfiles();
-        setProfiles(response);
-      }
-    }
+  // useEffect(() => {
+  //   async function getProfiles() {
+  //     if (!profiles) {
+  //       const response = await getAllProfiles();
+  //       setProfiles(response);
+  //     }
+  //   }
 
-    getProfiles();
-  }, [profiles]);
+  //   getProfiles();
+  // }, [profiles]);
 
   useEffect(() => {
     async function getToken() {
@@ -32,19 +32,17 @@ function App() {
         setAccessToken(response);
       }
     }
-
+//console.log(accessToken)
     getToken();
   }, [accessToken]);
 
   useEffect(() => {
     async function getReccomendations(accessToken) {
-      if (accessToken) {
         const response = await myReccomendations(accessToken);
-        setReccomendations(response);
-      }
+        setReccomendations(response.tracks); 
     }
-    getReccomendations();
-    console.log(reccomendations);
+    getReccomendations(accessToken);
+    console.log(reccomendations.tracks);
   }, [accessToken]);
 
   // async function getReccomendations(accessToken) {
@@ -72,14 +70,8 @@ function App() {
 
   return (
     <div>
-      {/* <p>{reccomendations.map((track)=>track.name)}</p> */}
-      {/* <ul>
-        {profiles && profiles.length > 0 ? (
-          profiles.map((profile) => renderProfile(profile))
-        ) : (
-          <p>No profiles found</p>
-        )}
-      </ul> */}
+      <p>{reccomendations.map((track)=>track.name)}</p>
+      
       <Router>
         <Routes>
           <Route exact path="/" element={<Home/>}></Route>
