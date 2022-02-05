@@ -5,7 +5,7 @@ const Home = ({reccomendations, ...props}) => {
     return (
         <div className="container">
             <Nav/>
-            {reccomendations!= null ? reccomendations.map((track) => <Track key={track.id}track={track}/>): 'waiting'}  
+            {reccomendations.map((track) => <Track key={track.id}track={track}/>)}  
 
         </div>
     )

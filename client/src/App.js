@@ -10,7 +10,7 @@ import {
 
 function App() {
   const [accessToken, setAccessToken] = useState(null);
-  const [reccomendations, setReccomendations] = useState(null);
+  const [reccomendations, setReccomendations] = useState([]);
 
   useEffect(() => {
     async function getToken() {
