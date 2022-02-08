@@ -9,16 +9,16 @@ const Home = ({reccomendations,accessToken,...props}) => {
     const [results, setResults] = useState([]);
 
     async function getSearchResults(accessToken, term) {
-        if (props.accessToken) {
+        if (accessToken) {
           const response = await spotifySearch(accessToken, term);
           setResults(response);  
-          console.log(response)
+          console.log(results)
         }
       }
     return (
         <div className="container">
             <Nav/>
-            <Search term={term} setTerm={setTerm} accessToken={props.accessToken} getSearchResults={getSearchResults} spotifySearch={spotifySearch}/>
+            <Search term={term} setTerm={setTerm} accessToken={accessToken} getSearchResults={getSearchResults} spotifySearch={spotifySearch}/>
             {reccomendations.map((track) => <Track key={track.id}track={track}/>)}  
 
         </div>

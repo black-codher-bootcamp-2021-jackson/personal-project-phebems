@@ -55,7 +55,7 @@ const spotifySearch = async (accessToken, term) => {
       },
     }
   );
-  console.log(data);
+ console.log(response.data);
   return response.data;
 };
 
