@@ -38,7 +38,7 @@ function App() {
     <div>
       <Router>
         <Routes>
-          <Route exact path="/" element={<Home reccomendations={reccomendations}/>}></Route>
+          <Route exact path="/" element={<Home reccomendations={reccomendations} accessToken={accessToken}/>}></Route>
         </Routes>
       </Router>
     </div>
