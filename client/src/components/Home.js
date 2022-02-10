@@ -15,14 +15,23 @@ const Home = ({reccomendations,accessToken,...props}) => {
           console.log(results)
         }
       }
-    return (
-        <div className="container">
+      if (accessToken != null) {
+        return (
+          <div className="container">
             <Nav/>
             <Search term={term} setTerm={setTerm} accessToken={accessToken} getSearchResults={getSearchResults} spotifySearch={spotifySearch}/>
             {reccomendations.map((track) => <Track key={track.id}track={track}/>)}  
 
         </div>
-    )
+        )
+      } else {
+        return (
+          <div className="container">
+            <Nav/>
+            <p>loading...</p>
+        </div>
+        )
+      }
 }
 
 export default Home;
