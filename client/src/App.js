@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import LogIn from "./components/LogIn";
+import SignUp from "./components/SignUp"
 
 // SERVICES THAT CALL OUR API ENDPOINTS
 import {
@@ -28,6 +29,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home accessToken={accessToken}/>}></Route>
           <Route path="/log-in" element={<LogIn/>}></Route>
+          <Route path="/sign-up" element={<SignUp/>}></Route>
         </Routes>
       </Router>
     </div>
