@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp"
+import Preferences from "./components/Preferences";
 
 // SERVICES THAT CALL OUR API ENDPOINTS
 import {
@@ -27,9 +28,10 @@ function App() {
     <div>
       <Router>
         <Routes>
-          <Route exact path="/" element={<Home accessToken={accessToken}/>}></Route>
-          <Route path="/log-in" element={<LogIn/>}></Route>
-          <Route path="/sign-up" element={<SignUp/>}></Route>
+          <Route exact path="/" element={<Home accessToken={accessToken}/>}/>
+          <Route path="/log-in" element={<LogIn/>}/>
+          <Route path="/sign-up" element={<SignUp/>}/>
+          <Route path="/preferences" element={<Preferences/>}/>
         </Routes>
       </Router>
     </div>
