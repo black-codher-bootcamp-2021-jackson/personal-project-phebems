@@ -1,9 +1,5 @@
 const Preferences = () => {
-  return (
-    <div className="container">
-      <h2>Preferences</h2>
-    </div>
-  );
+  return <h2>Preferences</h2>;
 };
 
 export default Preferences;

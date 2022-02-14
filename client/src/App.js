@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import LogIn from "./components/LogIn";
-import SignUp from "./components/SignUp"
+import SignUp from "./components/SignUp";
 import Preferences from "./components/Preferences";
 
 // SERVICES THAT CALL OUR API ENDPOINTS
-import {
-  getAuth,
-} from "./services/profileService";
+import { getAuth } from "./services/profileService";
 
 function App() {
   const [accessToken, setAccessToken] = useState(null);
@@ -20,18 +18,19 @@ function App() {
         setAccessToken(response);
       }
     }
-    console.log(accessToken)
+    console.log(accessToken);
     getToken();
-  },);
+  });
 
   return (
-    <div>
+    <div className="
+    container">
       <Router>
         <Routes>
-          <Route exact path="/" element={<Home accessToken={accessToken}/>}/>
-          <Route path="/log-in" element={<LogIn/>}/>
-          <Route path="/sign-up" element={<SignUp/>}/>
-          <Route path="/preferences" element={<Preferences/>}/>
+          <Route exact path="/" element={<Home accessToken={accessToken} />} />
+          <Route path="/log-in" element={<LogIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/preferences" element={<Preferences />} />
         </Routes>
       </Router>
     </div>
@@ -39,4 +38,3 @@ function App() {
 }
 
 export default App;
- 
