@@ -24,14 +24,26 @@ function App() {
   });
 
   return (
-    <div className="
-    container">
+    <div
+      className="
+    container"
+    >
       <Router>
         <Routes>
           <Route exact path="/" element={<Home accessToken={accessToken} />} />
-          <Route path="/log-in" element={<LogIn userToken={userToken} setUserToken={setUserToken}/>} />
+          <Route
+            path="/log-in"
+            element={
+              <LogIn userToken={userToken} setUserToken={setUserToken} />
+            }
+          />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/preferences" element={<Preferences userToken={userToken}/>} />
+          <Route
+            path="/preferences"
+            element={
+              <Preferences setUserToken={setUserToken} userToken={userToken} />
+            }
+          />
         </Routes>
       </Router>
     </div>

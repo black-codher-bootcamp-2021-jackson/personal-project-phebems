@@ -1,10 +1,29 @@
-import Nav from "./Nav";
+import React, { useState } from "react";
+import PropTypes from 'prop-types';
+import { userLogin } from "../services/userService";
 
-const LogIn = () => {
+const LogIn = ({setUserToken}) => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    try {const token = await userLogin({
+      email,
+      password
+    });
+    setUserToken(token)} catch(err) {
+      console.log(err)
+    }
+    
+  }
+
+
   return (
     <div className="log-in-container">
       <h1>please log in</h1>
-      <form id="log-in-form">
+      <form id="log-in-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label id="email-label" htmlFor="email">
             email
@@ -16,6 +35,7 @@ const LogIn = () => {
             className="form-control"
             placeholder="Enter your email"
             required
+            onChange={e => setEmail(e.target.value)}
           />
         </div>
 
@@ -30,6 +50,7 @@ const LogIn = () => {
             className="form-control"
             placeholder="Enter your password"
             required
+            onChange={e => setPassword(e.target.value)}
           />
         </div>
 
@@ -42,5 +63,9 @@ const LogIn = () => {
     </div>
   );
 };
+
+LogIn.propTypes = {
+  setUserToken: PropTypes.func.isRequired
+}
 
 export default LogIn;
