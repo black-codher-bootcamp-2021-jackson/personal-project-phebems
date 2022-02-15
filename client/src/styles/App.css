@@ -11,6 +11,10 @@ body {
   overflow-x: hidden;
 }
 
+.container {
+  padding: 20px;
+}
+
  /* Track */
 .track{
   display: flex;

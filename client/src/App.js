@@ -10,6 +10,7 @@ import { getAuth } from "./services/profileService";
 
 function App() {
   const [accessToken, setAccessToken] = useState(null);
+  const [userToken, setUserToken] = useState();
 
   useEffect(() => {
     async function getToken() {
@@ -28,9 +29,9 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Home accessToken={accessToken} />} />
-          <Route path="/log-in" element={<LogIn />} />
+          <Route path="/log-in" element={<LogIn userToken={userToken} setUserToken={setUserToken}/>} />
           <Route path="/sign-up" element={<SignUp />} />
-          <Route path="/preferences" element={<Preferences />} />
+          <Route path="/preferences" element={<Preferences userToken={userToken}/>} />
         </Routes>
       </Router>
     </div>

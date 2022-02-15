@@ -1,23 +1,23 @@
 const SignUp = () => {
   return (
     <div className="sign-up-page">
-      <form id="survey-form">
-        <div class="form-group">
-          <label id="name-label" for="name">
+      <form id="sign-up-form">
+        <div classname="form-group">
+          <label id="name-label" htmlFor="name">
             Name
           </label>
           <input
             type="text"
             name="name"
             id="name"
-            class="form-control"
+            className="form-control"
             placeholder="Enter your name"
             required
           />
         </div>
 
-        <div class="form-group">
-          <label id="email-label" for="email">
+        <div className="form-group">
+          <label id="email-label" htmlFor="email">
             Email
           </label>
           <input
@@ -30,14 +30,14 @@ const SignUp = () => {
           />
         </div>
 
-        <div class="form-group">
-          <label for="dropdown">Favourite Genres</label>
+        <div className="form-group">
+          <label htmlFor="dropdown">Favourite Genres</label>
           <select id="dropdown" name="fav-genres" class="form-control" required>
             <option value="genre">genre</option>
           </select>
         </div>
 
-        <div class="form-group">
+        <div className="form-group">
           <button type="submit" id="submit" class="submit-button">
             Submit
           </button>
