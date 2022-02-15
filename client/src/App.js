@@ -4,13 +4,15 @@ import Home from "./components/Home";
 import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import Preferences from "./components/Preferences";
+import useLoginToken from "./components/useLoginToken";
 
 // SERVICES THAT CALL OUR API ENDPOINTS
 import { getAuth } from "./services/profileService";
 
 function App() {
   const [accessToken, setAccessToken] = useState(null);
-  const [userToken, setUserToken] = useState();
+  //const [userToken, setUserToken] = useState();
+  const {userToken, setUserToken} = useLoginToken()
 
   useEffect(() => {
     async function getToken() {
