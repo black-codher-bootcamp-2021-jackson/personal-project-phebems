@@ -8,6 +8,7 @@ const cors = require('cors');
 
 // IMPORT YOUR SCHEMAS HERE
 require("./models/Profiles");
+require("./models/User")
 const app = express();
 
 // This is where your API is making its initial connection to the database
@@ -25,6 +26,8 @@ app.use(cors());
 require("./routes/profilesRoutes")(app); 
 require("./routes/routes")(app);
 require("./routes/loginRoutes")(app);
+require("./routes/userRoutes")(app);
+
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
