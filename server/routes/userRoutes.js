@@ -7,7 +7,18 @@ const userRoutes = (app) => {
   
       return res.status(200).send(users);
     });
+
+    app.use(`/api/user/signup`, async (req, res) => {
+      //const user = await User.create(req.body);
+  
+      return res.status(201).send(req.body);
+    });
+
+    app.use("/api/user/login", (req, res) => {
+      res.send({
+        token: "test123",
+      });
+    });
   
   };
-  
   module.exports = userRoutes;

@@ -26,7 +26,6 @@ app.use(cors());
 // It's importing and using everything from the profilesRoutes.js file and also passing app as a parameter for profileRoutes to use
 require("./routes/profilesRoutes")(app); 
 require("./routes/routes")(app);
-require("./routes/loginRoutes")(app);
 require("./routes/userRoutes")(app);
 
 
