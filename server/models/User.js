@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-
-const genreSchema = new Schema({ name: String });
+const {genreSchema} = require("./Genre");
 
 const userSchema = new Schema({
   first_name: { type: String, required: true },
@@ -14,8 +13,10 @@ const userSchema = new Schema({
   },
   password: { type: String, required: true },
   preferences: {
-    type: [genreSchema],
-    default: undefined
+    genres: [{
+      _id : {$oid: {type: String}},
+      name: String
+       }]
   },
 });
 

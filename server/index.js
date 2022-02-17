@@ -9,6 +9,7 @@ const cors = require('cors');
 // IMPORT YOUR SCHEMAS HERE
 require("./models/Profiles");
 require("./models/User")
+require("./models/Genre")
 const app = express();
 
 // This is where your API is making its initial connection to the database
