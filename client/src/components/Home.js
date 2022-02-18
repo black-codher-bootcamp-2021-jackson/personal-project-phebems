@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { spotifySearch, myReccomendations } from "../services/profileService";
+import { spotifySearch, myReccomendations } from "../services/spotifyService";
 import Nav from "./Nav";
 import Track from "./Track";
 import Search from "./Search";

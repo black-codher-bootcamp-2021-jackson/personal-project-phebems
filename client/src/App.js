@@ -7,7 +7,7 @@ import Preferences from "./components/Preferences";
 import useLoginToken from "./components/useLoginToken";
 
 // SERVICES THAT CALL OUR API ENDPOINTS
-import { getAuth } from "./services/profileService";
+import { getAuth } from "./services/spotifyService";
 
 function App() {
   const [accessToken, setAccessToken] = useState(null);
