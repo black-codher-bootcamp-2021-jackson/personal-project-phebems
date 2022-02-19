@@ -7,8 +7,8 @@ const getAllProfiles = async () => {
   return response.data || [];
 };
 
-const client_id = process.env.spotify_client_id;
-const client_secret = process.env.spotify_client_secret;
+// const client_id = process.env.spotify_client_id;
+// const client_secret = process.env.spotify_client_secret;
 const auth_token =
   "YmQ0NjFiN2UwNDRmNGU5NTgzYzU0ZWUzMDcwMTFlNDc6Njk1MTgzNGM5OWVlNGQ0YzkzNzgyOTY4YjEwOTQ4ZDE=";
 //Buffer.from(client_id + ":" + client_secret).toString("base64");
@@ -25,12 +25,11 @@ const getAuth = async () => {
       },
     }
   );
-  console.log(data.access_token)
+  console.log(data.access_token);
   return response.data.access_token;
 };
 
 const myReccomendations = async (accessToken) => {
-  
   const response = await axios.get(
     "https://api.spotify.com/v1/recommendations?limit=100&market=ES&seed_artists=23zg3TcAtWQy7J6upgbUnj&seed_genres=r-n-b",
     {
@@ -44,7 +43,6 @@ const myReccomendations = async (accessToken) => {
 };
 
 const spotifySearch = async (accessToken, term) => {
-  
   const response = await axios.get(
     `https://api.spotify.com/v1/search?query=${term}&type=album,track,artist&market=GB&include_external=audio`,
     {
@@ -53,7 +51,7 @@ const spotifySearch = async (accessToken, term) => {
       },
     }
   );
- console.log(response.data);
+  console.log(response.data);
   return response.data;
 };
 
