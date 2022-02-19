@@ -31,7 +31,7 @@ const getAuth = async () => {
 
 const myReccomendations = async (accessToken) => {
   const response = await axios.get(
-    "https://api.spotify.com/v1/recommendations?limit=100&market=ES&seed_artists=23zg3TcAtWQy7J6upgbUnj&seed_genres=r-n-b",
+    "https://api.spotify.com/v1/recommendations?limit=100&market=GB&seed_artists=23zg3TcAtWQy7J6upgbUnj&seed_genres=r-n-b",
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,

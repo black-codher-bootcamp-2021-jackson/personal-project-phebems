@@ -1,4 +1,4 @@
-function artistList() {
+function ArtistList() {
     return (
         <></>
     );

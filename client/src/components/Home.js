@@ -13,8 +13,8 @@ const Home = ({ accessToken, ...props }) => {
     if (accessToken) {
       const response = await spotifySearch(accessToken, term);
       setResults(response);
-      console.log(results);
-    }
+      
+    }console.log(results.tracks.items[0]);
   }
 
   useEffect(() => {
