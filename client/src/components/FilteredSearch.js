@@ -1,8 +1,8 @@
 import { spotifySearch } from "../services/spotifyService";
 import React, { useState } from "react";
 import Search from './Search';
-import Track from './Track';
 import Artist from './Artist';
+import TrackList from './TrackList';
 
 function FilteredSearch({accessToken}) {
     const [term, setTerm] = useState("");
@@ -27,10 +27,7 @@ function FilteredSearch({accessToken}) {
           accessToken={accessToken}
           getSearchResults={getSearchResults}
         />
-        <h2>Songs</h2>
-        {results.length === 0 ? '...' : results.tracks.items.map((track) => (
-          <Track key={track.id} track={track} />
-        ))}
+        <TrackList tracks={results}/>
         <h2>Artists</h2>
         {results.length === 0 ? '...' : results.artists.items.map((artist) => (
           <Artist key={artist.id} artist={artist} />
