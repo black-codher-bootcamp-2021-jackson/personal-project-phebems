@@ -30,6 +30,12 @@ body {
   width: 60px;
 }
 
+/* Results */
+.results {
+  display: flex;
+}
+
+
 /* sign up/log in */
 .sign-up-page {
   margin: 20%;
