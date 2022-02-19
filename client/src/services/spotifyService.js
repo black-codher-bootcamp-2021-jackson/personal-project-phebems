@@ -42,9 +42,9 @@ const myReccomendations = async (accessToken) => {
   return response.data;
 };
 
-const spotifySearch = async (accessToken, term) => {
+const spotifySearch = async (accessToken, term, type) => {
   const response = await axios.get(
-    `https://api.spotify.com/v1/search?query=${term}&type=album,track,artist&market=GB&include_external=audio`,
+    `https://api.spotify.com/v1/search?query=${term}&type=${type}&market=GB&include_external=audio`,
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,

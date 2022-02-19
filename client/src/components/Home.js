@@ -9,9 +9,10 @@ const Home = ({ accessToken, ...props }) => {
   const [results, setResults] = useState([]);
   const [reccomendations, setReccomendations] = useState([]);
 
-  async function getSearchResults(accessToken, term) {
+  async function getSearchResults(accessToken, term, type) {
+    type = 'album,track,artist'
     if (accessToken) {
-      const response = await spotifySearch(accessToken, term);
+      const response = await spotifySearch(accessToken, term, type);
       setResults(response);
       
     }console.log(results.tracks.items[0]);
@@ -36,7 +37,6 @@ const Home = ({ accessToken, ...props }) => {
           setTerm={setTerm}
           accessToken={accessToken}
           getSearchResults={getSearchResults}
-          spotifySearch={spotifySearch}
         />
         {reccomendations.map((track) => (
           <Track key={track.id} track={track} />

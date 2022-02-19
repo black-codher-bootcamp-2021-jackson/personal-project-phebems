@@ -21,6 +21,15 @@ body {
   margin-bottom: 1%;
 }
 
+/* Artist */
+.artist {
+  display:flex;
+}
+.artist img
+{
+  width: 60px;
+}
+
 /* sign up/log in */
 .sign-up-page {
   margin: 20%;

@@ -5,6 +5,7 @@ import LogIn from "./components/LogIn";
 import SignUp from "./components/SignUp";
 import Preferences from "./components/Preferences";
 import useLoginToken from "./components/useLoginToken";
+import FilteredSearch from "./components/FilteredSearch"
 
 // SERVICES THAT CALL OUR API ENDPOINTS
 import { getAuth } from "./services/spotifyService";
@@ -44,6 +45,12 @@ function App() {
             path="/preferences"
             element={
               <Preferences setUserToken={setUserToken} userToken={userToken} />
+            }
+          />
+<Route
+            path="/filtered-search"
+            element={
+              <FilteredSearch accessToken={accessToken}/>
             }
           />
         </Routes>
