@@ -15,7 +15,6 @@ function FilteredSearch({ accessToken }) {
       const response = await spotifySearch(accessToken, term, type);
       setResults(response);
     }
-    console.log(results.tracks.items[0]);
   }
 
   return (
