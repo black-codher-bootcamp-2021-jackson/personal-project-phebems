@@ -1,5 +1,6 @@
+import React, { useState, useEffect } from "react";
 import { spotifySearch } from "../services/spotifyService";
-import React, { useState } from "react";
+import { getGenres } from "../services/genreService"
 import Search from "./Search";
 import TrackList from "./TrackList";
 import ArtistList from "./ArtistList";
@@ -8,6 +9,15 @@ import Nav from "./Nav";
 function FilteredSearch({ accessToken }) {
   const [term, setTerm] = useState("");
   const [results, setResults] = useState([]);
+  
+  useEffect(() => {
+    async function availableGenres(accessToken) {
+      if (accessToken) {
+        const response = await getGenres();
+        console.log(response)
+      }
+    }
+availableGenres(accessToken)  }, [accessToken]);
 
   async function getSearchResults(accessToken, term, type) {
     type = "track,artist";
@@ -37,6 +47,7 @@ function FilteredSearch({ accessToken }) {
         ) : (
           <ArtistList artists={results.artists.items} />
         )}
+        {}
       </div>
     </>
   );
