@@ -16,24 +16,24 @@ body {
 }
 
 /* Nav */
-.nav li{
+.nav li {
   display: inline-flex;
   margin-right: 5%;
 }
 
- /* Track */
-.track{
+/* Track */
+.track {
   display: flex;
   margin-bottom: 1%;
 }
 
 /* Artist */
 .artist {
-  display:flex;
+  display: flex;
 }
-.artist img
-{
+.artist img {
   width: 60px;
+  border-radius: 50%;
 }
 
 /* Results */
@@ -41,13 +41,15 @@ body {
   display: flex;
 }
 
-
 /* sign up/log in */
 .sign-up-page {
   margin: 20%;
 }
 
-input.form-control, select, form button, label {  
+input.form-control,
+select,
+form button,
+label {
   width: 100%;
   padding: 1%;
   margin: 2% 0% 2% 0%;
