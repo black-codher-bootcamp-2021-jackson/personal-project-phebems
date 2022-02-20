@@ -1,8 +1,15 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const genreSchema = new Schema({ type: String});
+const genreSchema = new Schema(
+    {
+        _id: {
+          $oid: {type: String, required: true},
+        },
+        name: {type: String, required: true},
+      }
+);
 
 
 
-mongoose.model("genre", genreSchema);
+mongoose.model("genres", genreSchema);

@@ -27,6 +27,7 @@ app.use(cors());
 require("./routes/profilesRoutes")(app); 
 require("./routes/routes")(app);
 require("./routes/userRoutes")(app);
+require("./routes/genreRoutes")(app);
 
 
 const PORT = process.env.PORT;
