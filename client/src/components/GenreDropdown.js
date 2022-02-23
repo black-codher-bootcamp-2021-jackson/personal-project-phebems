@@ -2,9 +2,7 @@ import { useEffect, useState } from "react";
 import { default as ReactSelect } from "react-select";
 import { getGenres } from "../services/genreService";
 
-const GenreDropdown = () => {
-  const [genres, setGenres] = useState([]);
-  const [selectedGenres, setSelectedGenres] = useState([]);
+const GenreDropdown = ({selectedGenres, setSelectedGenres, genres, setGenres, ...props}) => {
 
   useEffect(() => {
     async function availableGenres() {

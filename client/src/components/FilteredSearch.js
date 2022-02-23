@@ -9,6 +9,9 @@ import GenreDropdown from "./GenreDropdown";
 function FilteredSearch({ accessToken }) {
   const [term, setTerm] = useState("");
   const [results, setResults] = useState([]);
+  const [selectedGenres, setSelectedGenres] = useState([]);
+  const [selectedTracks, setSelectedTracks] = useState([]);
+  const [genres, setGenres] = useState([]);
 
   async function getSearchResults(accessToken, term, type) {
     type = "track,artist";
@@ -22,24 +25,57 @@ function FilteredSearch({ accessToken }) {
     console.log(value);
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(selectedGenres.join());
+  }
+
+  const addTrack = (id) => {
+    setSelectedTracks(selectedTracks.concat(results.filter((track) => track.id === id)));
+    setResults([
+      ...results.map((track) => {
+        if (track.id === id) {
+          track.selected = true;
+        }
+        return track;
+      }),
+    ]);
+  };
+
+  const getId = (id) => {
+    console.log(id)
+};
+
   return (
     <div className="filteredSearch">
       <Nav />
-      <Search
-        term={term}
-        setTerm={setTerm}
-        accessToken={accessToken}
-        getSearchResults={getSearchResults}
-      />
-      <GenreDropdown onChange={onChange} />
+      <form onSubmit={handleSubmit}>
+        <Search
+          term={term}
+          setTerm={setTerm}
+          accessToken={accessToken}
+          getSearchResults={getSearchResults}
+        />
+        <GenreDropdown
+          onChange={onChange}
+          selectedGenres={selectedGenres}
+          setSelectedGenres={setSelectedGenres}
+          genres={genres}
+          setGenres={setGenres}
+        />
+        <input type="submit" />
+      </form>
+<div>
+  {/* {<TrackList tracks={selectedTracks} getId={getId}/>} */}
+</div>
       <div className="results">
         {results.length === 0 ? (
-          "..."
+          ""
         ) : (
-          <TrackList tracks={results.tracks.items} />
+          <TrackList tracks={results.tracks.items} getId={getId}/>
         )}
         {results.length === 0 ? (
-          "..."
+          ""
         ) : (
           <ArtistList artists={results.artists.items} />
         )}

@@ -13,6 +13,21 @@ function App() {
   const [accessToken, setAccessToken] = useState(null);
   //const [userToken, setUserToken] = useState();
   const {userToken, setUserToken} = useLoginToken()
+  const getId = (id) => {
+    console.log(id)
+};
+
+// const addTrack = (id) => {
+//   setSelectedTracks(selectedTracks.concat(results.filter((track) => track.id === id)));
+//   setResults([
+//     ...results.map((track) => {
+//       if (track.id === id) {
+//         track.selected = true;
+//       }
+//       return track;
+//     }),
+//   ]);
+// };
 
   useEffect(() => {
     async function getToken() {
@@ -45,7 +60,7 @@ function App() {
 <Route
             path="/filtered-search"
             element={
-              <FilteredSearch accessToken={accessToken}/>
+              <FilteredSearch getId={getId} accessToken={accessToken}/>
             }
           />
         </Routes>

@@ -1,4 +1,4 @@
-const Track = ({ track, ...props }) => {
+const Track = ({ track, getId, ...props }) => {
   const {
     id,
     name,
@@ -6,11 +6,9 @@ const Track = ({ track, ...props }) => {
     album: { images },
     preview_url,
   } = track;
-  const getId = (trackId) => {
-    console.log(trackId)
-}
+  
   return (
-    <div className="track" onClick={()=> getId(id)}>
+    <div className="track" onClick={() => getId(id)}>
       <img src={images[2].url} alt="album artwork" />
       <div>
         <h3>{name}</h3>
