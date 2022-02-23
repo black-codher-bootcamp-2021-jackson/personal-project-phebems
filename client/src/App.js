@@ -26,10 +26,6 @@ function App() {
   });
 
   return (
-    <div
-      className="
-    container"
-    >
       <Router>
         <Routes>
           <Route exact path="/" element={<Home accessToken={accessToken} />} />
@@ -54,7 +50,6 @@ function App() {
           />
         </Routes>
       </Router>
-    </div>
   );
 }
 

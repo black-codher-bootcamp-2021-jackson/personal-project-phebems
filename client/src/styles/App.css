@@ -9,9 +9,6 @@ html,
 body {
   max-width: 100%;
   overflow-x: hidden;
-}
-
-.container {
   padding: 20px;
 }
 
@@ -53,4 +50,9 @@ label {
   width: 100%;
   padding: 1%;
   margin: 2% 0% 2% 0%;
+}
+
+/* Filtered Search */
+.filteredSearch {
+  min-height: 100vh;
 }
