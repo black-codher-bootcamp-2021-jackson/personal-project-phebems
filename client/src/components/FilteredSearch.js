@@ -5,6 +5,7 @@ import TrackList from "./TrackList";
 import ArtistList from "./ArtistList";
 import Nav from "./Nav";
 import GenreDropdown from "./GenreDropdown";
+import Modal from "./Modal";
 
 function FilteredSearch({ accessToken }) {
   const [term, setTerm] = useState("");
@@ -16,7 +17,8 @@ function FilteredSearch({ accessToken }) {
   const [filtered, setFiltered] = useState([]);
   const [acoustic, setAcoustic] = useState(0.5);
   const [instrumental, setInstrumental] = useState(0.5);
-  const [popular, setPopular] = useState(50)
+  const [popular, setPopular] = useState(50);
+  const [showModal, setShowModal] = useState(false);
 
   async function getSearchResults(accessToken, term, type) {
     type = "track,artist";
@@ -69,6 +71,7 @@ function FilteredSearch({ accessToken }) {
       instrumental,
       popular
     );
+    openModal();
   }
 
   const addTrack = (id) => {
@@ -84,9 +87,14 @@ function FilteredSearch({ accessToken }) {
     console.log(id);
   };
 
+  const openModal = () => {
+    setShowModal(prev => !prev)
+  }
+
   return (
     <div className="filteredSearch">
       <Nav />
+      <Modal showModal={showModal} setShowModal={setShowModal}/>
       <Search
         term={term}
         setTerm={setTerm}
