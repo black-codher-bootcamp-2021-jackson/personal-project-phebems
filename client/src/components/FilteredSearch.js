@@ -16,6 +16,7 @@ function FilteredSearch({ accessToken }) {
   const [filtered, setFiltered] = useState([]);
   const [acoustic, setAcoustic] = useState(0.5);
   const [instrumental, setInstrumental] = useState(0.5);
+  const [popular, setPopular] = useState(50)
 
   async function getSearchResults(accessToken, term, type) {
     type = "track,artist";
@@ -30,7 +31,8 @@ function FilteredSearch({ accessToken }) {
     seedGenres,
     seedTracks,
     targetAcousticness,
-    targetInstrumentalness
+    targetInstrumentalness,
+    targetPopularity
   ) {
     if (accessToken) {
       const response = await myReccomendations(
@@ -38,7 +40,8 @@ function FilteredSearch({ accessToken }) {
         seedGenres,
         seedTracks,
         targetAcousticness,
-        targetInstrumentalness
+        targetInstrumentalness,
+        targetPopularity
       );
       setFiltered(response.tracks);
     }
@@ -55,14 +58,16 @@ function FilteredSearch({ accessToken }) {
       selectedGenres.join(","),
       selectedArtists,
       acoustic,
-      instrumental
+      instrumental,
+      popular
     );
     getReccomendations(
       accessToken,
       selectedGenres,
       selectedTracks.map((track) => track.id),
       acoustic,
-      instrumental
+      instrumental,
+      popular
     );
   }
 
@@ -121,6 +126,20 @@ function FilteredSearch({ accessToken }) {
           className="slider"
           onChange={({ target: { value: radius } }) => {
             setInstrumental(radius);
+          }}
+        />
+      </div>
+      <div className="slidecontainer">
+        popularity {popular}
+        <input
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          value={popular}
+          className="slider"
+          onChange={({ target: { value: radius } }) => {
+            setPopular(radius);
           }}
         />
       </div>

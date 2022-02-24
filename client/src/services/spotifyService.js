@@ -36,12 +36,13 @@ const myReccomendations = async (
   seedGenres,
   seedTracks,
   targetAcousticness,
-  targetInstrumentalness
+  targetInstrumentalness,
+  targetPopularity
 ) => {
   const response = await axios.get(
     `https://api.spotify.com/v1/recommendations?limit=50&market=GB&seed_tracks=${
       seedTracks ? seedTracks.join(",") : ""
-    }&seed_genres=${seedGenres ? seedGenres.join(",") : ''}&target_acousticness=${targetAcousticness}&target_instrumentalness=${targetInstrumentalness}`,
+    }&seed_genres=${seedGenres ? seedGenres.join(",") : ''}&target_acousticness=${targetAcousticness}&target_instrumentalness=${targetInstrumentalness}&target_popularity${targetPopularity} `,
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,

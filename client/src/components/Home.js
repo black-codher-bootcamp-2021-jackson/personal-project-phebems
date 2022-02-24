@@ -25,13 +25,15 @@ const Home = ({ accessToken, ...props }) => {
       seedGenres,
       seedTracks,
       targetAcousticness,
-      targetInstrumentalness
+      targetInstrumentalness,
+      targetPopularity
     ) {
       //seedArtists = ["23zg3TcAtWQy7J6upgbUnj"];
       seedGenres = ["rock", "rnb"];
       seedTracks ='';
       targetAcousticness = 0.5;
-      targetInstrumentalness = 0.5
+      targetInstrumentalness = 0.5;
+      targetPopularity = 50;
 
       if (accessToken) {
         const response = await myReccomendations(
@@ -39,7 +41,8 @@ const Home = ({ accessToken, ...props }) => {
           seedGenres,
           seedTracks,
           targetAcousticness,
-          targetInstrumentalness
+          targetInstrumentalness,
+          targetPopularity
         );
         setReccomendations(response.tracks);
       }
