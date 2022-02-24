@@ -1,10 +1,8 @@
-function Artist({ artist }) {
+function Artist({ artist, addArtist }) {
   const { id, images, name } = artist;
-  const getId = (trackId) => {
-    console.log(trackId);
-  };
+
   return (
-    <div className="artist" onClick={() => getId(id)}>
+    <div className="artist" onClick={() => addArtist(id)}>
       {images[2] ? (
         <img src={images[2].url} alt={name + "profile"} />
       ) : (

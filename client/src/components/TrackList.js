@@ -1,13 +1,18 @@
-import Track from './Track'
-const TrackList = ({tracks, getId, ...props}) => {
-    return ( 
-        <div className="trackList">
-            <h2>Songs</h2>
-        {tracks?.map((track) => (
-          <Track key={track.id} track={track} getId={getId} {...props}/>
-        ))}
-        </div>
-     );
-}
- 
+import Track from "./Track";
+const TrackList = ({ tracks, getId, addTrack, ...props }) => {
+  return (
+    <div className="trackList">
+      {tracks?.map((track) => (
+        <Track
+          key={track.id}
+          track={track}
+          addTrack={addTrack}
+          getId={getId}
+          {...props}
+        />
+      ))}
+    </div>
+  );
+};
+
 export default TrackList;

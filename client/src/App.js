@@ -13,9 +13,7 @@ function App() {
   const [accessToken, setAccessToken] = useState(null);
   //const [userToken, setUserToken] = useState();
   const {userToken, setUserToken} = useLoginToken()
-  const getId = (id) => {
-    console.log(id)
-};
+  
 
 // const addTrack = (id) => {
 //   setSelectedTracks(selectedTracks.concat(results.filter((track) => track.id === id)));
@@ -60,7 +58,7 @@ function App() {
 <Route
             path="/filtered-search"
             element={
-              <FilteredSearch getId={getId} accessToken={accessToken}/>
+              <FilteredSearch accessToken={accessToken} />
             }
           />
         </Routes>

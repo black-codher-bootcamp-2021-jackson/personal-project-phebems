@@ -11,6 +11,7 @@ function FilteredSearch({ accessToken }) {
   const [results, setResults] = useState([]);
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [selectedTracks, setSelectedTracks] = useState([]);
+  const [selectedArtists, setSelectedArtists] = useState([]);
   const [genres, setGenres] = useState([]);
 
   async function getSearchResults(accessToken, term, type) {
@@ -28,23 +29,21 @@ function FilteredSearch({ accessToken }) {
   function handleSubmit(e) {
     e.preventDefault();
     console.log(selectedGenres.join());
+    console.log(selectedTracks);
   }
 
   const addTrack = (id) => {
-    setSelectedTracks(selectedTracks.concat(results.filter((track) => track.id === id)));
-    setResults([
-      ...results.map((track) => {
-        if (track.id === id) {
-          track.selected = true;
-        }
-        return track;
-      }),
-    ]);
+    setSelectedTracks(results.tracks.items.filter((track) => track.id === id));
+  };
+  const addArtist = (id) => {
+    setSelectedArtists(
+      results.artists.items.filter((artist) => artist.id === id)
+    );
   };
 
   const getId = (id) => {
-    console.log(id)
-};
+    console.log(id);
+  };
 
   return (
     <div className="filteredSearch">
@@ -65,14 +64,32 @@ function FilteredSearch({ accessToken }) {
         />
         <input type="submit" />
       </form>
-<div>
-  {/* {<TrackList tracks={selectedTracks} getId={getId}/>} */}
-</div>
+      <div>
+        <h2>picked</h2>
+        {selectedTracks.length > 0 ? (
+          <TrackList tracks={selectedTracks} getId={getId} />
+        ) : (
+          ""
+        )}
+        {selectedArtists.length > 0 ? (
+          <ArtistList tracks={selectedTracks} getId={getId} />
+        ) : (
+          ""
+        )}
+      </div>
       <div className="results">
         {results.length === 0 ? (
           ""
         ) : (
-          <TrackList tracks={results.tracks.items} getId={getId}/>
+          <>
+            <h2>Songs</h2>
+            <TrackList
+              tracks={results.tracks.items}
+              addArtist={addArtist}
+              addTrack={addTrack}
+              getId={getId}
+            />
+          </>
         )}
         {results.length === 0 ? (
           ""
@@ -80,6 +97,17 @@ function FilteredSearch({ accessToken }) {
           <ArtistList artists={results.artists.items} />
         )}
       </div>
+
+      <button
+        onClick={console.log(
+          selectedTracks,
+          selectedGenres.join(""),
+          selectedArtists
+        )}
+      >
+  
+        show all
+      </button>
     </div>
   );
 }
