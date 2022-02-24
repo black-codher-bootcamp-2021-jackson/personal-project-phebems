@@ -22,21 +22,21 @@ const Home = ({ accessToken, ...props }) => {
   useEffect(() => {
     async function getReccomendations(
       accessToken,
-      seedArtists,
       seedGenres,
       seedTracks,
       targetAcousticness
     ) {
-      seedArtists = ["23zg3TcAtWQy7J6upgbUnj"];
+      //seedArtists = ["23zg3TcAtWQy7J6upgbUnj"];
       seedGenres = ["rock", "rnb"];
+      seedTracks ='';
+      targetAcousticness = 0.5;
 
       if (accessToken) {
         const response = await myReccomendations(
           accessToken,
-          seedArtists,
           seedGenres,
           seedTracks,
-          1
+          targetAcousticness
         );
         setReccomendations(response.tracks);
       }

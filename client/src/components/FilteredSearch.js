@@ -14,6 +14,7 @@ function FilteredSearch({ accessToken }) {
   const [selectedArtists, setSelectedArtists] = useState([]);
   const [genres, setGenres] = useState([]);
   const [filtered, setFiltered] = useState([]);
+  const [acoustic, setAcoustic] = useState(0.5)
 
   async function getSearchResults(accessToken, term, type) {
     type = "track,artist";
@@ -23,9 +24,19 @@ function FilteredSearch({ accessToken }) {
     }
   }
 
-  async function getReccomendations(accessToken, seedArtists, seedGenres, seedTracks, targetAcousticness) {
+  async function getReccomendations(
+    accessToken,
+    seedGenres,
+    seedTracks,
+    targetAcousticness
+  ) {
     if (accessToken) {
-      const response = await myReccomendations(accessToken, seedArtists, seedGenres, seedTracks, targetAcousticness);
+      const response = await myReccomendations(
+        accessToken,
+        seedGenres,
+        seedTracks,
+        targetAcousticness
+      );
       setFiltered(response.tracks);
     }
   }
@@ -39,10 +50,15 @@ function FilteredSearch({ accessToken }) {
     console.log(
       selectedTracks[0].id,
       selectedGenres.join(","),
-      selectedArtists
-    )
-
-    getReccomendations(accessToken, selectedArtists, selectedGenres, selectedTracks.map(track => track.id), 1)
+      selectedArtists,
+      acoustic
+    );
+    getReccomendations(
+      accessToken,
+      selectedGenres,
+      selectedTracks.map((track) => track.id),
+      0.5
+    );
   }
 
   const addTrack = (id) => {
@@ -61,21 +77,29 @@ function FilteredSearch({ accessToken }) {
   return (
     <div className="filteredSearch">
       <Nav />
-        <Search
-          term={term}
-          setTerm={setTerm}
-          accessToken={accessToken}
-          getSearchResults={getSearchResults}
-        />
-        <GenreDropdown
-          onChange={onChange}
-          selectedGenres={selectedGenres}
-          setSelectedGenres={setSelectedGenres}
-          genres={genres}
-          setGenres={setGenres}
-        />
+      <Search
+        term={term}
+        setTerm={setTerm}
+        accessToken={accessToken}
+        getSearchResults={getSearchResults}
+      />
+      <GenreDropdown
+        onChange={onChange}
+        selectedGenres={selectedGenres}
+        setSelectedGenres={setSelectedGenres}
+        genres={genres}
+        setGenres={setGenres}
+      />
+      <div class="slidecontainer">
+        target acousticness {acoustic}
+         <input type="range" min="0" max="1" step='0.1' value={acoustic} class="slider" onChange={({ target: { value: radius } }) => {
+                    setAcoustic(radius);
+                  }}
+/>
+      </div>
+
       <div>
-        <h2>picked</h2>
+        {/* <h2>picked</h2> */}
         {selectedTracks.length > 0 ? (
           <TrackList tracks={selectedTracks} getId={getId} />
         ) : (
@@ -92,7 +116,7 @@ function FilteredSearch({ accessToken }) {
           ""
         ) : (
           <>
-            <h2>Songs</h2>
+            {/* <h2>Songs</h2> */}
             <TrackList
               tracks={results.tracks.items}
               addArtist={addArtist}
@@ -101,25 +125,16 @@ function FilteredSearch({ accessToken }) {
             />
           </>
         )}
-        {results.length === 0 ? (
+        {/* {results.length === 0 ? (
           ""
         ) : (
           <ArtistList artists={results.artists.items} />
-        )}
+        )} */}
       </div>
 
-      <button
-        onClick={handleSubmit}
-      >
-  
-        show all
-      </button>
+      <button onClick={handleSubmit}>show all</button>
 
-      {filtered.length > 0 ? (
-          <TrackList tracks={filtered} getId={getId} />
-        ) : (
-          ""
-        )}
+      {filtered.length > 0 ? <TrackList tracks={filtered} getId={getId} /> : ""}
     </div>
   );
 }
