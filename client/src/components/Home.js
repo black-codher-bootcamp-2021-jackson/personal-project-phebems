@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { spotifySearch, myReccomendations } from "../services/spotifyService";
 import Nav from "./Nav";
 import Track from "./Track";
+import TrackList from "./TrackList";
 import Search from "./Search";
 
 const Home = ({ accessToken, ...props }) => {
@@ -10,18 +11,33 @@ const Home = ({ accessToken, ...props }) => {
   const [reccomendations, setReccomendations] = useState([]);
 
   async function getSearchResults(accessToken, term, type) {
-    type = 'album,track,artist'
+    type = "album,track,artist";
     if (accessToken) {
       const response = await spotifySearch(accessToken, term, type);
       setResults(response);
-      
-    }console.log(results.tracks.items[0]);
+    }
+    console.log(results.tracks.items[0]);
   }
 
   useEffect(() => {
-    async function getReccomendations(accessToken) {
+    async function getReccomendations(
+      accessToken,
+      seedArtists,
+      seedGenres,
+      seedTracks,
+      targetAcousticness
+    ) {
+      seedArtists = ["23zg3TcAtWQy7J6upgbUnj"];
+      seedGenres = ["rock", "rnb"];
+
       if (accessToken) {
-        const response = await myReccomendations(accessToken);
+        const response = await myReccomendations(
+          accessToken,
+          seedArtists,
+          seedGenres,
+          seedTracks,
+          1
+        );
         setReccomendations(response.tracks);
       }
     }
@@ -38,9 +54,7 @@ const Home = ({ accessToken, ...props }) => {
           accessToken={accessToken}
           getSearchResults={getSearchResults}
         />
-        {reccomendations.map((track) => (
-          <Track key={track.id} track={track} />
-        ))}
+        <TrackList tracks={reccomendations} />
       </>
     );
   } else {

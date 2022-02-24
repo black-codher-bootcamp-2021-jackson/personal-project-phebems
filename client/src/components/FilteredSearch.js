@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { spotifySearch } from "../services/spotifyService";
+import { spotifySearch, myReccomendations } from "../services/spotifyService";
 import Search from "./Search";
 import TrackList from "./TrackList";
 import ArtistList from "./ArtistList";
@@ -13,6 +13,7 @@ function FilteredSearch({ accessToken }) {
   const [selectedTracks, setSelectedTracks] = useState([]);
   const [selectedArtists, setSelectedArtists] = useState([]);
   const [genres, setGenres] = useState([]);
+  const [filtered, setFiltered] = useState([]);
 
   async function getSearchResults(accessToken, term, type) {
     type = "track,artist";
@@ -22,14 +23,26 @@ function FilteredSearch({ accessToken }) {
     }
   }
 
+  async function getReccomendations(accessToken, seedArtists, seedGenres, seedTracks, targetAcousticness) {
+    if (accessToken) {
+      const response = await myReccomendations(accessToken, seedArtists, seedGenres, seedTracks, targetAcousticness);
+      setFiltered(response.tracks);
+    }
+  }
+
   function onChange(value) {
     console.log(value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(selectedGenres.join());
-    console.log(selectedTracks);
+    console.log(
+      selectedTracks[0].id,
+      selectedGenres.join(","),
+      selectedArtists
+    )
+
+    getReccomendations(accessToken, selectedArtists, selectedGenres, selectedTracks.map(track => track.id), 1)
   }
 
   const addTrack = (id) => {
@@ -48,7 +61,6 @@ function FilteredSearch({ accessToken }) {
   return (
     <div className="filteredSearch">
       <Nav />
-      <form onSubmit={handleSubmit}>
         <Search
           term={term}
           setTerm={setTerm}
@@ -62,8 +74,6 @@ function FilteredSearch({ accessToken }) {
           genres={genres}
           setGenres={setGenres}
         />
-        <input type="submit" />
-      </form>
       <div>
         <h2>picked</h2>
         {selectedTracks.length > 0 ? (
@@ -99,15 +109,17 @@ function FilteredSearch({ accessToken }) {
       </div>
 
       <button
-        onClick={console.log(
-          selectedTracks,
-          selectedGenres.join(""),
-          selectedArtists
-        )}
+        onClick={handleSubmit}
       >
   
         show all
       </button>
+
+      {filtered.length > 0 ? (
+          <TrackList tracks={filtered} getId={getId} />
+        ) : (
+          ""
+        )}
     </div>
   );
 }

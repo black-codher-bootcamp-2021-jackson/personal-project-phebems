@@ -19,7 +19,7 @@ const Track = ({ track, getId, addTrack }) => {
         </p>
 
         {preview_url ? (
-          <a href={preview_url}>preview</a>
+          <audio controls='controls' src={preview_url}>preview</audio>
         ) : (
           "preview unavailable"
         )}

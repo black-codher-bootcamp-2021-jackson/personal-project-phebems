@@ -29,9 +29,19 @@ const getAuth = async () => {
   return response.data.access_token;
 };
 
-const myReccomendations = async (accessToken) => {
+const myReccomendations = async (
+  accessToken,
+  seedArtists,
+  seedGenres,
+  seedTracks,
+  targetAcousticness
+) => {
   const response = await axios.get(
-    "https://api.spotify.com/v1/recommendations?limit=100&market=GB&seed_artists=23zg3TcAtWQy7J6upgbUnj&seed_genres=r-n-b",
+    `https://api.spotify.com/v1/recommendations?limit=50&market=GB&seed_artists=${
+      seedArtists ? seedArtists.join(",") : ""
+    }&seed_tracks=${
+      seedTracks ? seedTracks.join(",") : ""
+    }&seed_genres=${seedGenres ? seedGenres.join(",") : ''}&max_acousticness=${targetAcousticness ? targetAcousticness : ''}`,
     {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -51,7 +61,6 @@ const spotifySearch = async (accessToken, term, type) => {
       },
     }
   );
-  console.log(response.data);
   return response.data;
 };
 
