@@ -24,19 +24,22 @@ const Home = ({ accessToken, ...props }) => {
       accessToken,
       seedGenres,
       seedTracks,
-      targetAcousticness
+      targetAcousticness,
+      targetInstrumentalness
     ) {
       //seedArtists = ["23zg3TcAtWQy7J6upgbUnj"];
       seedGenres = ["rock", "rnb"];
       seedTracks ='';
       targetAcousticness = 0.5;
+      targetInstrumentalness = 0.5
 
       if (accessToken) {
         const response = await myReccomendations(
           accessToken,
           seedGenres,
           seedTracks,
-          targetAcousticness
+          targetAcousticness,
+          targetInstrumentalness
         );
         setReccomendations(response.tracks);
       }

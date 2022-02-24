@@ -9,7 +9,13 @@ const Track = ({ track, getId, addTrack }) => {
 
   return (
     <div className="track" onClick={() => {addTrack(id)}}>
-      <img src={images[2].url} alt="album artwork" />
+      {images[2] ? (
+        <img src={images[2].url} alt={name + "artwork"} />
+      ) : (
+        <img
+          src="https://www.flaticon.com/premium-icon/music_2342212"
+          alt="album artwork"         />
+      )}
       <div>
         <h3>{name}</h3>
         <p>

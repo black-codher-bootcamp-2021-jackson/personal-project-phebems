@@ -14,7 +14,8 @@ function FilteredSearch({ accessToken }) {
   const [selectedArtists, setSelectedArtists] = useState([]);
   const [genres, setGenres] = useState([]);
   const [filtered, setFiltered] = useState([]);
-  const [acoustic, setAcoustic] = useState(0.5)
+  const [acoustic, setAcoustic] = useState(0.5);
+  const [instrumental, setInstrumental] = useState(0.5);
 
   async function getSearchResults(accessToken, term, type) {
     type = "track,artist";
@@ -28,14 +29,16 @@ function FilteredSearch({ accessToken }) {
     accessToken,
     seedGenres,
     seedTracks,
-    targetAcousticness
+    targetAcousticness,
+    targetInstrumentalness
   ) {
     if (accessToken) {
       const response = await myReccomendations(
         accessToken,
         seedGenres,
         seedTracks,
-        targetAcousticness
+        targetAcousticness,
+        targetInstrumentalness
       );
       setFiltered(response.tracks);
     }
@@ -51,13 +54,15 @@ function FilteredSearch({ accessToken }) {
       selectedTracks[0].id,
       selectedGenres.join(","),
       selectedArtists,
-      acoustic
+      acoustic,
+      instrumental
     );
     getReccomendations(
       accessToken,
       selectedGenres,
       selectedTracks.map((track) => track.id),
-      0.5
+      acoustic,
+      instrumental
     );
   }
 
@@ -90,12 +95,34 @@ function FilteredSearch({ accessToken }) {
         genres={genres}
         setGenres={setGenres}
       />
-      <div class="slidecontainer">
-        target acousticness {acoustic}
-         <input type="range" min="0" max="1" step='0.1' value={acoustic} class="slider" onChange={({ target: { value: radius } }) => {
-                    setAcoustic(radius);
-                  }}
-/>
+      <div className="slidecontainer">
+        acoustic {acoustic}
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.1"
+          value={acoustic}
+          className="slider"
+          onChange={({ target: { value: radius } }) => {
+            setAcoustic(radius);
+          }}
+        />
+      </div>
+
+      <div className="slidecontainer">
+        instrumental {instrumental}
+        <input
+          type="range"
+          min="0"
+          max="1"
+          step="0.1"
+          value={instrumental}
+          className="slider"
+          onChange={({ target: { value: radius } }) => {
+            setInstrumental(radius);
+          }}
+        />
       </div>
 
       <div>
