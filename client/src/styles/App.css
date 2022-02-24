@@ -28,9 +28,10 @@ body {
 .artist {
   display: flex;
 }
-.artist img, .track img {
+.artist img,
+.track img {
   width: 60px;
-  height:60px;
+  height: 60px;
 }
 .artist img {
   border-radius: 50%;
@@ -58,4 +59,17 @@ label {
 /* Filtered Search */
 .filteredSearch {
   min-height: 100vh;
+  z-index: 1;
+}
+
+/* Modal */
+.modal {
+  justify-content: center;
+  display: flex;
+  width: 90%;
+  height: 90%;
+  position: fixed;
+  border-radius: 10px;
+  border: solid black;
+  z-index: 10;
 }
