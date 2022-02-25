@@ -4,7 +4,6 @@
   padding: 0;
   list-style: none;
   font-family: "Sora", sans-serif;
-
 }
 
 .container {
@@ -40,11 +39,23 @@ a {
 .track {
   display: flex;
   margin-bottom: 1%;
+  border-bottom: 1px solid rgb(209, 209, 209);
+  align-items: center;
 }
 .modal .trackList {
   justify-content: center;
 }
 
+.preview {
+  float: right;
+}
+
+.info {
+  width: 80%;
+}
+.artwork {
+  margin-right: 2%;
+}
 /* Artist */
 .artist {
   display: flex;
@@ -106,7 +117,7 @@ label {
   background-color: transparent;
   background-repeat: no-repeat;
   outline: none;
-  border:none;
+  border: none;
 }
 
 .modal button:hover {
@@ -117,13 +128,41 @@ label {
   width: 40px;
   height: auto;
 }
- /* search field */
- .search-field {
+/* search field */
+.search-field {
   height: 42.5px;
-  border: 2px solid;
+  border: 1px solid;
+  border-color: hsl(0, 0%, 80%);
   padding: 10px 35px 10px 15px;
-  border-radius: 100px 100px 100px 100px;
+  border-radius: 4px;
   outline: none;
   z-index: 9;
   background: transparent;
+  margin-bottom: 1%;
+}
+
+input[type="text"] {
+  width: 100%;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  background: #d7dcdf;
+  outline: none;
+  height: 10px;
+  border-radius: 5px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: rgb(129, 128, 126);
+}
+
+.sliders {
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
 }

@@ -6,7 +6,6 @@ import ArtistList from "./ArtistList";
 import Nav from "./Nav";
 import GenreDropdown from "./GenreDropdown";
 import Modal from "./Modal";
-import { get } from "mongoose";
 
 function FilteredSearch({ accessToken }) {
   const [term, setTerm] = useState("");
@@ -89,13 +88,18 @@ function FilteredSearch({ accessToken }) {
   };
 
   const openModal = () => {
-    setShowModal(prev => !prev)
-  }
+    setShowModal((prev) => !prev);
+  };
 
   return (
     <div className="filteredSearch">
       <Nav />
-      <Modal showModal={showModal} setShowModal={setShowModal} filtered={filtered} getId={getId}/>
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        filtered={filtered}
+        getId={getId}
+      />
       <Search
         term={term}
         setTerm={setTerm}
@@ -109,48 +113,54 @@ function FilteredSearch({ accessToken }) {
         genres={genres}
         setGenres={setGenres}
       />
-      <div className="slidecontainer">
-        acoustic {acoustic}
-        <input
-          type="range"
-          min="0"
-          max="1"
-          step="0.1"
-          value={acoustic}
-          className="slider"
-          onChange={({ target: { value: radius } }) => {
-            setAcoustic(radius);
-          }}
-        />
-      </div>
+      <div className="sliders">
+        <div className="slidecontainer">
+        <label for="instrumental">acoustic {acoustic}</label>
+          <input
+          id="acoustic"
+            type="range"
+            min="0"
+            max="1"
+            step="0.1"
+            value={acoustic}
+            className="slider"
+            onChange={({ target: { value: radius } }) => {
+              setAcoustic(radius);
+            }}
+          />
+        </div>
 
-      <div className="slidecontainer">
-        instrumental {instrumental}
-        <input
-          type="range"
-          min="0"
-          max="1"
-          step="0.1"
-          value={instrumental}
-          className="slider"
-          onChange={({ target: { value: radius } }) => {
-            setInstrumental(radius);
-          }}
-        />
-      </div>
-      <div className="slidecontainer">
-        popularity {popular}
-        <input
-          type="range"
-          min="0"
-          max="100"
-          step="1"
-          value={popular}
-          className="slider"
-          onChange={({ target: { value: radius } }) => {
-            setPopular(radius);
-          }}
-        />
+        <div className="slidecontainer">
+          <label for="instrumental">instrumental {instrumental}</label>
+          <input
+          id="instrumental"
+            type="range"
+            min="0"
+            max="1"
+            step="0.1"
+            value={instrumental}
+            className="slider"
+            onChange={({ target: { value: radius } }) => {
+              setInstrumental(radius);
+            }}
+          />
+        </div>
+        <div className="slidecontainer">
+          <label for="popular"> popularity {popular}</label>
+
+          <input
+          id="popular"
+            type="range"
+            min="0"
+            max="100"
+            step="1"
+            value={popular}
+            className="slider"
+            onChange={({ target: { value: radius } }) => {
+              setPopular(radius);
+            }}
+          />
+        </div>
       </div>
 
       <button onClick={handleSubmit}>show all</button>
