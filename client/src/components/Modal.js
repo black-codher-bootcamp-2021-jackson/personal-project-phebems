@@ -17,7 +17,11 @@ const Modal = ({ showModal, setShowModal, filtered, getId }) => {
               className="closeModal"
               onClick={() => setShowModal((prev) => !prev)}
             >
-              x
+              <img
+              alt="remove button"
+              className="icon"
+              src="images/remove.png"
+            />
             </button>
           </div>
         </div>

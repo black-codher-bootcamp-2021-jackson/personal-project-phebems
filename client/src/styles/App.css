@@ -3,6 +3,13 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  font-family: "Sora", sans-serif;
+
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
 }
 
 html,
@@ -16,6 +23,17 @@ body {
 .nav li {
   display: inline-flex;
   margin-right: 5%;
+}
+.nav {
+  text-align: center;
+  font-size: 1.3em;
+  margin-bottom: 3%;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  margin-left: 10px;
 }
 
 /* Track */
@@ -83,4 +101,29 @@ label {
   top: 0;
   right: 0;
   margin: 2%;
+  opacity: 0.6;
+  transition: 0.3s;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  outline: none;
+  border:none;
+}
+
+.modal button:hover {
+  opacity: 1;
+}
+
+.icon {
+  width: 40px;
+  height: auto;
+}
+ /* search field */
+ .search-field {
+  height: 42.5px;
+  border: 2px solid;
+  padding: 10px 35px 10px 15px;
+  border-radius: 100px 100px 100px 100px;
+  outline: none;
+  z-index: 9;
+  background: transparent;
 }
