@@ -23,6 +23,9 @@ body {
   display: flex;
   margin-bottom: 1%;
 }
+.modal .trackList {
+  justify-content: center;
+}
 
 /* Artist */
 .artist {
@@ -64,7 +67,6 @@ label {
 
 /* Modal */
 .modal {
-  justify-content: center;
   display: flex;
   width: 90%;
   height: 90%;
@@ -72,4 +74,13 @@ label {
   border-radius: 10px;
   border: solid black;
   z-index: 10;
+  padding: 5%;
+  background-color: rgba(255, 255, 255, 0.8);
+  overflow: auto;
+}
+.modal button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 2%;
 }

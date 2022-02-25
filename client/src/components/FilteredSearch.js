@@ -6,6 +6,7 @@ import ArtistList from "./ArtistList";
 import Nav from "./Nav";
 import GenreDropdown from "./GenreDropdown";
 import Modal from "./Modal";
+import { get } from "mongoose";
 
 function FilteredSearch({ accessToken }) {
   const [term, setTerm] = useState("");
@@ -94,7 +95,7 @@ function FilteredSearch({ accessToken }) {
   return (
     <div className="filteredSearch">
       <Nav />
-      <Modal showModal={showModal} setShowModal={setShowModal}/>
+      <Modal showModal={showModal} setShowModal={setShowModal} filtered={filtered} getId={getId}/>
       <Search
         term={term}
         setTerm={setTerm}
@@ -152,6 +153,8 @@ function FilteredSearch({ accessToken }) {
         />
       </div>
 
+      <button onClick={handleSubmit}>show all</button>
+
       <div>
         {/* <h2>picked</h2> */}
         {selectedTracks.length > 0 ? (
@@ -185,10 +188,6 @@ function FilteredSearch({ accessToken }) {
           <ArtistList artists={results.artists.items} />
         )} */}
       </div>
-
-      <button onClick={handleSubmit}>show all</button>
-
-      {filtered.length > 0 ? <TrackList tracks={filtered} getId={getId} /> : ""}
     </div>
   );
 }
